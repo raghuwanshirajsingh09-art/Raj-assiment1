@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexcent - Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Reset & Core Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #4CAF4F;
+            --secondary: #263238;
+            --text-dark: #4D4D4D;
+            --text-light: #717171;
+            --bg-silver: #F5F7FA;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* --- Reusable Components --- */
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #3E8E41;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            padding: 10px 20px;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+        .section-title span {
+            color: var(--primary);
+        }
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* --- Header / Navbar --- */
+        header {
+            background-color: var(--white);
+            padding: 22px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 24px;
+            color: #263238;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #18191F;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-login {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: var(--bg-silver);
+            padding: 96px 0;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+        }
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+        .hero-text p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        .hero-img svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* --- Clients Section --- */
+        .clients {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .client-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .client-logos svg {
+            fill: #263238;
+            opacity: 0.8;
+        }
+
+        /* --- Community Section --- */
+        .community {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #E8F5E9;
+            border-radius: 8px 0 8px 8px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .card p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* --- Feature Split Layouts --- */
+        .feature-split {
+            padding: 50px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 60px;
+        }
+        .feature-text h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+        .feature-text p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        /* --- Stats Banner Section --- */
+        .stats-banner {
+            background-color: var(--bg-silver);
+            padding: 64px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+        .stats-numbers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 24px;
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .stat-info h4 {
+            font-size: 24px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .stat-info p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* --- Testimonial Section --- */
+        .testimonial {
+            background-color: var(--bg-silver);
+            padding: 32px 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 0.6fr 1.4fr;
+            align-items: center;
+            gap: 40px;
+        }
+        .testimonial-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .testimonial-content p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        .testimonial-author {
+            margin-top: 16px;
+        }
+        .testimonial-author h4 {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .testimonial-author p {
+            font-size: 13px;
+            color: #89939E;
+            margin-top: 4px;
+        }
+        .testimonial-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .testimonial-logos {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .link-action {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- Marketing Blog Section --- */
+        .marketing {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .marketing-header {
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        .marketing-header p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .blog-card {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .blog-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .blog-content {
+            background-color: var(--bg-silver);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.06);
+            width: 85%;
+            margin: -60px auto 0;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .blog-content h4 {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.4;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* --- Bottom Call to Action --- */
+        .bottom-cta {
+            background-color: var(--bg-silver);
+            padding: 48px 0;
+            text-align: center;
+        }
+        .bottom-cta h2 {
+            font-size: 48px;
+            color: #263238;
+            font-weight: 600;
+            margin-bottom: 32px;
+            line-height: 1.2;
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            background-color: var(--secondary);
+            color: #F5F7FA;
+            padding: 64px 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
+            gap: 40px;
+        }
+        .footer-brand p {
+            font-size: 14px;
+            margin: 24px 0;
+            color: #F5F7FA;
+            opacity: 0.8;
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+        .social-links a {
+            background: rgba(255,255,255,0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        .footer-links ul li a {
+            color: #F5F7FA;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .footer-input-group {
+            position: relative;
+            margin-top: 24px;
+        }
+        .footer-input-group input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            border-radius: 4px;
+            color: var(--white);
+            font-size: 14px;
+        }
+        .footer-input-group input::placeholder {
+            color: #D9DBE1;
+        }
+        .footer-input-group svg {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* --- Responsive Queries --- */
+        @media (max-width: 992px) {
+            .hero-grid, .feature-grid, .stats-grid, .testimonial-grid, .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-img, .feature-img {
+                order: -1;
+            }
+            .testimonial-img img {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .testimonial-logos {
+                justify-content: center;
+            }
+            nav, .nav-auth { display: none; } /* Kept simple for representation */
+        }
+
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+.testimonial{
+    width:100%;
+    background:#F5F7FA;
+    padding:70px 8%;
+}
+
+.testimonial-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.left{
+    flex:0 0 350px;
+}
+
+.left img{
+    width:100%;
+    border-radius:12px;
+    display:block;
+}
+
+.right{
+    flex:1;
+}
+
+.right p{
+    color:#6B7280;
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.right h3{
+    color:#4CAF50;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.company{
+    color:#8A8A8A;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.logo-row{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    width:50px;
+    height:50px;
+    border-radius:8px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    color:#444;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.link{
+    text-decoration:none;
+    color:#4CAF50;
+    font-size:24px;
+    font-weight:bold;
+    margin-left:auto;
+}
+
+.link:hover{
+    color:#388E3C;
+}
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+}
+
+.left{
+    flex:unset;
+    width:100%;
+    max-width:400px;
+}
+
+.link{
+    margin-left:0;
+}
+
+.logo-row{
+    justify-content:center;
+}
+
+.right{
+    text-align:center;
+}
+
+
+
+      *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#fff;
+}
+
+.blog-section{
+    width:90%;
+    max-width:1200px;
+    margin:80px auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h1{
+    font-size:48px;
+    color:#4d4d4d;
+    margin-bottom:18px;
+    font-weight:700;
+}
+
+.section-title p{
+    width:70%;
+    margin:auto;
+    color:#717171;
+    line-height:1.7;
+    font-size:17px;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:350px;
+    position:relative;
+}
+
+.card img{
+    width:100%;
+    height:290px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.card-content{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:-60px;
+
+    width:88%;
+    background:#fff;
+    border-radius:12px;
+    text-align:center;
+    padding:28px 22px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.card-content h3{
+    color:#555;
+    font-size:23px;
+    line-height:1.45;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.card-content a{
+    color:#4CAF4F;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.card-content a i{
+    margin-left:8px;
+}
+
+.card-content a:hover{
+    letter-spacing:1px;
+}
+
+@media(max-width:992px){
+
+    .section-title h1{
+        font-size:38px;
+    }
+
+    .section-title p{
+        width:100%;
+    }
+
+    .cards{
+        gap:90px;
+    }
+
+    .card{
+        width:400px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .section-title h1{
+        font-size:30px;
+    }
+
+    .section-title p{
+        font-size:15px;
+    }
+
+    .card{
+        width:100%;
+    }
+
+    .card-content{
+        width:90%;
+        padding:22px;
+    }
+
+    .card-content h3{
+        font-size:20px;
+    }
+
+    .card-content a{
+        font-size:18px;
+    }
+
+}
+}
+
+    </style>
+
+     <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <svg width="30" height="20" viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.1 0L35 12L23.1 24L19.3 20.2L26.1 13.4H0V10.6H26.1L19.3 3.8L23.1 0Z" fill="#4CAF4F"/></svg>
+                Nexcent
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Feature</a></li>
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">Testimonial</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-auth">
+                <a href="#" class="btn-login">Login</a>
+                <button class="btn-primary">Sign up</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Lessons and insights <span>from 8 years</span></h1>
+                <p>Where to grow your business as a photographer: site or social media?</p>
+                <button class="btn-primary">Register</button>
+            </div>
+            <div class="hero-img">
+
+                <img src="Assets/Illustration.png" alt="Illustration">
+            </div>
+        
+                
+           
+    </section>
+
+    <section class="clients">
+        <div class="container">
+            <h2 class="section-title" style="font-size:28px">Our Clients</h2>
+            <p class="section-subtitle">We have been working with some Fortune 500+ clients</p>
+            <div class="client-logos">
+               
+                <img src="Assets/Clients Logos.png" alt="Client-logos">
+            </div>
+        </div>
+    </section>
+
+    <section class="community">
+        <div class="container">
+            <h2 class="section-title">Manage your entire community<br>in a single system</h2>
+            <p class="section-subtitle">Who is Nextcent suitable for?</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">
+                       <img src="Assets/Icon.png" alt="icon">
+                    </div>
+                    <h3>Membership Organisations</h3>
+                    <p>Our membership management software provides full automation of membership renewals and payments</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="Assets/Icon (1).png" alt="icon">
+                    </div>
+                    <h3>National Associations</h3>
+                    <p>Our membership management software provides full automation of membership renewals and payments</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="Assets/Icon (2).png" alt="icon">
+
+                        </div>
+                    <h3>Clubs And Groups</h3>
+                    <p>Our membership management software provides full automation of membership renewals and payments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-split">
+        <div class="container feature-grid">
+            <div class="feature-img">
+                <img src="Assets/Frame 35.png" alt="Feature Image">
+            </div>
+            <div class="feature-text">
+                <h2>The unseen of spending three years at Pixelgrade</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed quis maximus erat. Cras iaculis diam quam, sed porttitor erat luctus vel. Mauris interdum, ac accumsan purus vel, aliquam diam. Donec elementum pulvinar odio.</p>
+                <button class="btn-primary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+
+<div class="container">
+
+<div class="left">
+
+<h1>
+Helping a local <br>
+<span>business reinvent itself</span>
+</h1>
+
+<p>
+We reached here with our hard work and dedication
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="card">
+<div class="icon">
+    <img src="Assets/Icon (3).png" alt="icon">
+</div>
+<div>
+<div class="number">2,245,341</div>
+<div class="label">Members</div>
+</div>
+</div>
+
+<div class="card">
+<div class="icon">
+     <img src="Assets/Group 2.png" alt="icon">
+</div>
+<div>
+<div class="number">46,328</div>
+<div class="label">Clubs</div>
+</div>
+</div>
+
+<div class="card">
+<div class="icon">
+    <img src="Assets/Icon (4).png" alt="icon">
+</div>
+<div>
+<div class="number">828,867</div>
+<div class="label">Event Bookings</div>
+</div>
+</div>
+
+<div class="card">
+<div class="icon">
+    <img src="Assets/Icon (5).png" alt="icon">
+</div>
+<div>
+<div class="number">1,926,436</div>
+<div class="label">Payments</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="image-box">
+    <img src="Assets/pana.png" alt="image">
+</div>
+
+<div class="content">
+
+<h1>
+How to design your site footer like we did
+</h1>
+
+<p>
+Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor,
+augue nec tincidunt molestie, massa nunc varius arcu, at scelerisque
+elit erat a magna. Donec quis erat at libero ultrices mollis. In hac
+habitasse platea dictumst. Vivamus vehicula leo dui, at porta nisi
+facilisis finibus. Praesent felis est, finibus et nisi ac, hendrerit
+venenatis libero.
+</p>
+
+<a href="#" class="btn">Learn More</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="testimonial">
+
+<div class="testimonial-container">
+
+<div class="left">
+<img src="Assets/tesla.png" alt="Tesla">
+</div>
+
+<div class="right">
+
+<p>
+Maecenas dignissim justo eget nulla rutrum molestie. Maecenas lobortis sem dui,
+vel rutrum risus tincidunt ullamcorper. Proin eu enim metus. Vivamus sed libero
+ornare, tristique quam in, gravida enim. Nullam ut molestie arcu, at hendrerit
+elit. Morbi laoreet elit at ligula molestie, nec molestie mi blandit.
+Suspendisse cursus tellus sed augue ultrices, quis tristique nulla sodales.
+Suspendisse eget lorem eu turpis vestibulum pretium.
+</p>
+
+<h3>Tim Smith</h3>
+
+<div class="company">
+British Dragon Boat Racing Association
+</div>
+
+<div class="logo-row">
+
+<div class="logo">
+    <img src="Assets/Frame 10.png" alt="logo">
+</div>
+
+<a href="#" class="link">
+Meet all customers →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="blog-section">
+
+    <div class="section-title">
+        <h1>Caring is the new marketing</h1>
+        <p>
+            The Nexcent blog is the best place to read about the latest membership
+            insights, trends and more. See who's joining the community, read about
+            how our community are increasing their membership income and lot's more.
+        </p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="">
+            <div class="card-content">
+                <h3>Creating Streamlined Safeguarding Processes with OneRen</h3>
+                <a href="#">Readmore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600" alt="">
+            <div class="card-content">
+                <h3>What are your safeguarding responsibilities and how can you manage them?</h3>
+                <a href="#">Readmore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?w=600" alt="">
+            <div class="card-content">
+                <h3>Revamping the Membership Model with Triathlon Australia</h3>
+                <a href="#">Readmore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA Section -->
+
+<section class="cta">
+
+    <h1>
+        Pellentesque suscipit <br>
+        fringilla libero eu.
+    </h1>
+
+    <button>
+        Get a Demo
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <!-- Left -->
+
+        <div class="footer-left">
+
+            <h2>
+                <span class="logo">▲</span> Nexcent
+            </h2>
+
+            <p>Copyright © 2020 Nexcent ltd.</p>
+            <p>All rights reserved</p>
+
+            <div class="social">
+
+                <a href="Assets/Path.png"><i class="fab fa-instagram"></i></a>
+
+                <a href="Assets/dribble.png"><i class="fab fa-dribbble"></i></a>
+
+                <a href="Assets/twitter.png"><i class="fab fa-twitter"></i></a>
+
+                <a href="Assets/youtube.png"><i class="fab fa-youtube"></i></a>
+
+            </div>
+
+        </div>
+
+        <!-- Company -->
+
+        <div class="footer-links">
+
+            <h3>Company</h3>
+
+            <a href="#">About us</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact us</a>
+            <a href="#">Pricing</a>
+            <a href="#">Testimonials</a>
+
+        </div>
+
+        <!-- Support -->
+
+        <div class="footer-links">
+
+            <h3>Support</h3>
+
+            <a href="#">Help center</a>
+            <a href="#">Terms of service</a>
+            <a href="#">Legal</a>
+            <a href="#">Privacy policy</a>
+            <a href="#">Status</a>
+
+        </div>
+
+        <!-- Subscribe -->
+
+        <div class="subscribe">
+
+            <h3>Stay up to date</h3>
+
+            <div class="email-box">
+
+                <input type="email" placeholder="Your email address">
+
+                <button>
+                    <i class="fa-regular fa-paper-plane"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
